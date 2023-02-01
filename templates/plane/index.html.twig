@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plane index
+{% endblock %}
+
+{% block body %}
+	<h1>Tous les avions</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Model</th>
+				<th>Constructor</th>
+				<th>Year</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for plane in planes %}
+				<tr>
+					<td>{{ plane.model }}</td>
+					<td>{{ plane.constructor }}</td>
+					<td>{{ plane.year }}</td>
+					<td>
+						<a href="{{ path('app_plane_show', {'id': plane.id}) }}">show</a>
+						<a href="{{ path('app_plane_edit', {'id': plane.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_plane_new') }}">Create new</a>
+{% endblock %}
